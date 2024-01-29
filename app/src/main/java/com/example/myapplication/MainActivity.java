@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -17,40 +21,29 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ImageView view;
+    private Switch sw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView mytext = findViewById(R.id.textview);
-        EditText myedit = findViewById(R.id.edittext);
-        Button mybutton = findViewById(R.id.mybutton);
+        view  = findViewById(R.id.flagView);
+        sw = findViewById(R.id.spin_switch);
 
 
-        mybutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String edittext = myedit.getText().toString();
-                mytext.setText("Your edit text has:" + edittext);
+        sw.setOnCheckedChangeListener((btn, isChecked) -> {
+            if(isChecked){
+                RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                rotate.setDuration(5000);
+                rotate.setRepeatCount(Animation.INFINITE);
+                rotate.setInterpolator(new LinearInterpolator());
+                view.startAnimation(rotate);
             }
-        });
-
-        CheckBox checkBox = findViewById(R.id.checkbox);
-        Switch myswitch = findViewById(R.id.myswitch);
-        RadioButton radio = findViewById(R.id.radio);
-
-        checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            myswitch.setChecked(isChecked);
-            radio.setChecked(isChecked);
-        });
-        myswitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            checkBox.setChecked(isChecked);
-            radio.setChecked(isChecked);
-        });
-        radio.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            myswitch.setChecked(isChecked);
-            checkBox.setChecked(isChecked);
+            else {
+                view.clearAnimation();
+            }
         });
 
     }
