@@ -1,5 +1,3 @@
 <resources>
-    <string name="app_name">Lab application</string>
-    <string name="spin_message">"Spin flag"</string>
-    <string name="Button">Button</string>
+
 </resources>
