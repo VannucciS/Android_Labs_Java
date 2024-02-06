@@ -2,5 +2,7 @@
 <resources>
     <string name="app_name">Laboratio de apps</string>
     <string name="spin_message">Girar Bandeira</string>
-    <string name="Button">Botao</string>
+    <string name="emailField">email</string>
+    <string name="passField">Senha</string>
+    <string name="Button">Entrar</string>
 </resources>

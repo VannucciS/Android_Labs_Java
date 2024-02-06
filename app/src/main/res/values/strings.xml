@@ -1,3 +1,7 @@
 <resources>
-
+    <string name="app_name">My Application</string>
+    <string name="passField">Type your Password</string>
+    <string name="emailField">Type your Email</string>
+    <string name="buttonField">Login</string>
+    <string name="spin_message">Spin</string>
 </resources>
